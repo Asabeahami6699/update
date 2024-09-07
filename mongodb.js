@@ -12,7 +12,7 @@ mongoose.connect(enviAtlas)
     console.log('Mongodb Atlas is connected');
 })
 .catch((e) => {
-    console.log('Mongodb Atlas failed connecting', e);
+    console.log('Mongoose failed connecting', e);
 });
 
 // Model for Adding User(s) to the DB 
