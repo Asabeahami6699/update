@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="imgs and icons/fav.png" type="image/x-icon">
+        <link rel="stylesheet" href="/src/admin.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js" defer></script>
+        <title>Administrator 1</title>
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <div>
+                    <img src="imgs and icons/report-ezgif.com-resize.gif" class="imge-edit"><li class="overview-dropdown" onclick="showOverviewPopup()">Overview</li>
+                </div>
+                <div>
+                    <img src="imgs and icons/statistics-ezgif.com-resize.gif" class="imge-edit"><li id="transactionMonitoring" >Transaction Monitoring</li>
+                </div>
+                <div>
+                    <img src="imgs and icons/user-ezgif.com-resize.gif" class="imge-edit"><li id="user-mgmt" onclick="openPopup()">User Management</li>
+                </div>
+                <div>
+                    <img src="imgs and icons/icons8-settings.gif" class="imge-edit">
+                <li class="s-dropdown">Settings
+                    <ul class="s-dd-cont">
+                        <li>Password Reset</li>
+                        <li>
+                            <div class="logout-btn">
+                                <form action="/logout?_method=DELETE" method="POST">
+                                    <button type="submit">Log Out</button>
+                                </form>  
+                            </div>  
+                        </li>
+                    </ul>
+                </li>
+                </div>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="body-title">
+                <p>All Tellers Deposits Transactions Dashboard</p>
+            </div>
+            <p class="tell-disp">AIYINASE TELLER 1</p>
+            <div class="body-content">
+            <div class="sub-total1">
+                <p class="tot">MOMO-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1count%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1transferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">FIDELITY-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1countF%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1FtransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">ECOBANK-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1countE%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1EtransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">CALBANK-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1countC%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1CtransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">OTHER-BANKS-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1odcount%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1ObtransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1countsusu%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1SutransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">VODA-CASH-SECTION</p>
+                <div class="card-disp1">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= AT1Vcount%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Amount Deposited</h1>
+                    <h2>GHC <%= AT1VodatransferredAmount%></h2>
+                </div>
+            </div>
+            <div class="sub-total1">
+                <p class="tot">OUTPUTS</p>
+                <div class="card-disp1">
+                    <h1>Today's Total Costumers</h1>
+                    <h2><%= AT1TotalCostumers%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Total Amount Deposited</h1>
+                    <h2>GHC <%= AT1TotalAmoutTrans%></h2>
+                </div>
+            </div> 
+            <div class="sub-total1">
+                <p class="tot">OUTPUTS</p>
+                <div class="card-disp1">
+                    <h1>Initial Physical Cash</h1>
+                    <h2>GHC <%= AT1InitialPCash%></h2>
+                </div>
+                <div class="card-disp1">
+                    <h1>Physical Cash Collected</h1>
+                    <h2>GHC <%= AT1totalColtdPcash%></h2>
+                </div>
+            </div>
+            <div class="sub-total2">
+                <p class="tot">OVERALL DEPOSIT</p>
+                <div class="card-disp1">
+                    <h1>Actual Amount Deposited</h1>
+                    <h2>GHC <%= AT1TTotalcPcash%></h2>
+                </div>
+            </div> 
+            </div>
+            <p class="tell-disp">AIYINASE TELLER 2</p>
+            <div class="body-content">
+                <div class="sub-total1">
+                    <p class="tot">MOMO-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2count%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2transferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">FIDELITY-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2countF%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2FtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">ECOBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2countE%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2EtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">CALBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2countC%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2CtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OTHER-BANKS-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2odcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2ObtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2countsusu%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2SutransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">VODA-CASH-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= AT2Vcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT2VodatransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Today's Total Costumers</h1>
+                        <h2><%= AT2TotalCostumers%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Total Amount Deposited</h1>
+                        <h2>GHC <%= AT2TotalAmoutTrans%></h2>
+                    </div>
+                </div> 
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Initial Physical Cash</h1>
+                        <h2>GHC <%= AT2InitialPCash%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Physical Cash Collected</h1>
+                        <h2>GHC <%= AT2totalColtdPcash%></h2>
+                    </div>
+                </div>
+                <div class="sub-total2">
+                    <p class="tot">OVERALL DEPOSIT</p>
+                    <div class="card-disp1">
+                        <h1>Actual Amount Deposited</h1>
+                        <h2>GHC <%= AT2TTotalcPcash%></h2>
+                    </div>
+                </div> 
+            </div>
+            <p class="tell-disp">BOGOSO TELLER 1</p>
+            <div class="body-content">
+                <div class="sub-total1">
+                    <p class="tot">MOMO-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1count%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1transferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">FIDELITY-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1countF%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1FtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">ECOBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1countE%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1EtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">CALBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1countC%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1CtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OTHER-BANKS-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1odcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1ObtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1countsusu%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1SutransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">VODA-CASH-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT1Vcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT1VodatransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Today's Total Costumers</h1>
+                        <h2><%= BT1TotalCostumers%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Total Amount Deposited</h1>
+                        <h2>GHC <%= BT1TotalAmoutTrans%></h2>
+                    </div>
+                </div> 
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Initial Physical Cash</h1>
+                        <h2>GHC <%= BT1InitialPCash%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Physical Cash Collected</h1>
+                        <h2>GHC <%= BT1totalColtdPcash%></h2>
+                    </div>
+                </div>
+                <div class="sub-total2">
+                    <p class="tot">OVERALL DEPOSIT</p>
+                    <div class="card-disp1">
+                        <h1>Actual Amount Deposited</h1>
+                        <h2>GHC <%= BT1TTotalcPcash%></h2>
+                    </div>
+                </div> 
+            </div>
+            <p class="tell-disp">BOGOSO TELLER 2</p>
+            <div class="body-content">
+                <div class="sub-total1">
+                    <p class="tot">MOMO-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2count%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2transferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">FIDELITY-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2countF%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2FtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">ECOBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2countE%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2EtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">CALBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2countC%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2CtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OTHER-BANKS-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2odcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2ObtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2countsusu%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2SutransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">VODA-CASH-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= BT2Vcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= BT2VodatransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Today's Total Costumers</h1>
+                        <h2><%= BT2TotalCostumers%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Total Amount Deposited</h1>
+                        <h2>GHC <%= BT2TotalAmoutTrans%></h2>
+                    </div>
+                </div> 
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Initial Physical Cash</h1>
+                        <h2>GHC <%= BT2InitialPCash%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Physical Cash Collected</h1>
+                        <h2>GHC <%= BT2totalColtdPcash%></h2>
+                    </div>
+                </div>
+                <div class="sub-total2">
+                    <p class="tot">OVERALL DEPOSIT</p>
+                    <div class="card-disp1">
+                        <h1>Actual Amount Deposited</h1>
+                        <h2>GHC <%= BT2TTotalcPcash%></h2>
+                    </div>
+                </div> 
+            </div>
+            <p class="tell-disp">PRESTEA TELLER 1</p>
+            <div class="body-content">
+                <div class="sub-total1">
+                    <p class="tot">MOMO-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1count%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1transferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">FIDELITY-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1countF%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1FtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">ECOBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1countE%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1EtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">CALBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1countC%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1CtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OTHER-BANKS-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1odcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1ObtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1countsusu%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= AT1count%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">VODA-CASH-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT1Vcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT1VodatransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Today's Total Costumers</h1>
+                        <h2><%= PT1TotalCostumers%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Total Amount Deposited</h1>
+                        <h2>GHC <%= PT1TotalAmoutTrans%></h2>
+                    </div>
+                </div> 
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Initial Physical Cash</h1>
+                        <h2>GHC <%= PT1InitialPCash%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Physical Cash Collected</h1>
+                        <h2>GHC <%= PT1totalColtdPcash%></h2>
+                    </div>
+                </div>
+                <div class="sub-total2">
+                    <p class="tot">OVERALL DEPOSIT</p>
+                    <div class="card-disp1">
+                        <h1>Actual Amount Deposited</h1>
+                        <h2>GHC <%= PT1TTotalcPcash%></h2>
+                    </div>
+                </div> 
+            </div>
+            <p class="tell-disp">PRESTEA TELLER 2</p> 
+            <div class="body-content">
+                <div class="sub-total1">
+                    <p class="tot">MOMO-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2count%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2transferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">FIDELITY-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2countF%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2FtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">ECOBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2countE%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2EtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">CALBANK-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2countC%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2CtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OTHER-BANKS-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2odcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2ObtransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">SUSU-DEPOSIT-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2countsusu%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2SutransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">VODA-CASH-SECTION</p>
+                    <div class="card-disp1">
+                        <h1>Today's Costumers</h1>
+                        <h2><%= PT2Vcount%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Amount Deposited</h1>
+                        <h2>GHC <%= PT2VodatransferredAmount%></h2>
+                    </div>
+                </div>
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Today's Total Costumers</h1>
+                        <h2><%= PT2TotalCostumers%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Total Amount Deposited</h1>
+                        <h2>GHC <%= PT2TotalAmoutTrans%></h2>
+                    </div>
+                </div> 
+                <div class="sub-total1">
+                    <p class="tot">OUTPUTS</p>
+                    <div class="card-disp1">
+                        <h1>Initial Physical Cash</h1>
+                        <h2>GHC <%= PT2InitialPCash%></h2>
+                    </div>
+                    <div class="card-disp1">
+                        <h1>Physical Cash Collected</h1>
+                        <h2>GHC <%= PT2totalColtdPcash%></h2>
+                    </div>
+                </div>
+                <div class="sub-total2">
+                    <p class="tot">OVERALL DEPOSIT</p>
+                    <div class="card-disp1">
+                        <h1>Actual Amount Deposited</h1>
+                        <h2>GHC <%= PT2TTotalcPcash%></h2>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        </div>
+        <div class="popup-container" id="popup-container">
+          <div class="popup-content" id="popup-content">
+            <h1>Overview Menu</h1>
+            <hr>
+            <form>
+            <button type="button" class="ov-btn" onclick="ViewTotaltransac()">View All Tellers Deposit Transactions Data</button>
+            <button type="button" class="ov-btn" onclick="SuperuserDataBase()">More Options</button>
+            </form>
+            <hr>
+            <button type="button" class="close-popupo" onclick="closeBtn()">Close</button>
+          </div>
+          <div class="popup-content" id="popup-superuser">
+            <h1>Select Page</h1>
+            <hr>
+            <form action="/Withdrawals" method="get">
+                <button type="submit" class="ov-btn">Visit Tellers Withdrawal Page</button>
+            </form>
+            <form action="/superuser2" method="get">
+                <button type="submit" class="ov-btn">Visit Superuser's Transaction Page</button>
+            </form>
+            <hr>
+            <button type="button" class="close-popupo" onclick="closeBtn()">Close</button>
+          </div>
+          <div class="popup-content" id="viewTT">
+            <h1>All Tellers Total Deposits Transaction Menu</h1>
+            <hr>
+            <form >
+             <h2>Total MTN Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttmd%></p>
+             <h2>Total Vodafone Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttvd%></p>
+             <h2>Total Susu Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttsd%></p>
+             <h2>Total Ecobank Deposited</h2>
+             <p class="vip">Amount: GHC <%= tted%></p>
+             <h2>Total Fidelity Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttfd%></p>
+             <h2>Total Calbank Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttcd%></p>
+             <h2>Total Other Banks Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttod%></p>
+             <h2>All Tellers Total Initial Physical Cash</h2>
+             <p class="vip">Amount: GHC <%= ttin%></p>
+             <h2>All Tellers Total Costumers</h2>
+             <p class="vip"> Number: <%= ttdc%></p>
+             <h2>All Tellers Total Physical Cash Collected</h2>
+             <p class="vip">Amount: GHC <%= ttcc%></p>
+             <h2>All Tellers Total Amount Deposited</h2>
+             <p class="vip">Amount: GHC <%= ttaf%></p>
+             <h2>All Tellers Actual Deposited Cash</h2>
+             <p class="vip">Amount: GHC <%= ttdp%></p>
+            </form>
+            <hr>
+            <button type="button" class="close-popupo" onclick="closeBtn()">Close</button>
+          </div>
+        </div>
+        <div class="bgd-edit">
+            <div class="popup-contain" id="userManagementPopup">
+                <span class="close-popups" onclick="closePopup()">X</span>
+                <h2>User Management Menu</h2>
+                <div class="user-txt">
+                    <ul>
+                        <li onclick="viewUsers()">View Number of Users</li>
+                        <li onclick="addteller()">Add New Teller</li>
+                        <li onclick="addUser2()">Add New User</li>
+                        <li onclick="deleteUser()">Delete User</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="popup-TM" id="popup-TM">
+            <div class="popup-conTM" id="popup-contTM">
+                <h2>Transaction Monitoring Menu</h2>
+                <form action="" method="get">
+                    <canvas id="barChart"></canvas>
+                    <canvas id="pieChart"></canvas>
+                    <button type="button" class="close-popups" id="close-popupTM">Close</button>
+                </form>
+            </div>
+        </div>
+        <div id="adduser-backgrd">
+            <div class="popup-content" id="add-teller">
+                <h1>Teller's Registration Form</h1>
+                <hr>
+                <form action="/UserRegisteration" method="post" id="UserRegisteration">
+                    <p>Username</p>
+                    <input type="text" name="name" id="username" placeholder="Username" required>
+                    <p>User Type</p>
+                    <select id="user-type" name="usertype" required>
+                        <option value="Teller" selected>Teller</option>
+                    </select>
+                    <p>Branch Type</p>
+                    <select id="branch" name="branch" required>
+                        <option value="null" disabled selected hidden>......</option>
+                        <option value="Aiyinase">Aiyinase</option>
+                        <option value="Prestea">Prestea</option>
+                        <option value="Bogoso">Bogoso</option>
+                    </select>
+                    <p>Teller Type</p>
+                    <select id="Teller-type" name="tellertype" required>
+                        <option value="null" disabled selected hidden>......</option>
+                        <option value="Teller-1">Teller-1</option>
+                        <option value="Teller-2">Teller-2</option>
+                    </select>
+                    <p>Password</p>
+                    <input type="password" name="Password" id="password" placeholder="Password" required>
+                    <p id="errm1" class="error">PLEASE ALL FIELDS ARE REQUIRED!!</p>
+                 <button type="button" class="ov-btn" onclick="confirRegis1()" >Next</button>  
+                </form>
+                <hr>
+                <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+            </div>
+            <div class="popup-content" id="add-users2">
+                <h1>User Registration Form</h1>
+                <hr>
+                <form action="/UserRegisteration2" method="post" id="UserRegisteration2">
+                    <p>Username</p>
+                    <input type="text" name="name" id="username" placeholder="Username" required>
+                    <label for="user-ty2">User Type:</label>
+                    <select id="user-type2" name="usertype" required>
+                        <option value="null" disabled selected hidden>......</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="Superuser">Superuser</option>
+                        <option value="Invites">Special Invite</option>
+                    </select>
+                    <p>Branch Type</p>
+                    <select id="branch" name="branch" required>
+                        <option value="No-branch" selected>None</option>
+                    </select>
+                    <p>Teller Type</p>
+                    <select id="Teller-type" name="tellertype" required>
+                        <option value="No-type" selected>None</option>
+                    </select>
+                    <p>Password</p>
+                    <input type="password" name="Password" id="password" placeholder="Password" required>
+                    <p id="errm2" class="error">PLEASE ALL FIELDS ARE REQUIRED!!</p>
+                 <button type="button" class="ov-btn" onclick="confirRegis2()">Next</button>  
+                </form>
+                <hr>
+                <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+            </div>
+            <div class="popup-content" id="delete-user">
+                <h1>User Delete Form</h1>
+                <form action="/DeleteUser" method="post" id="UserDelete">
+                    <p id="errm3" class="error">THE USER NAME TO DELETE IS REQUIRED!!</p>
+                    <p>Enter The Username Here !</p>
+                    <input type="name" name="Username" id="username" placeholder="The user you want to delete from the database name :" required>
+                    <button type="button" class="ov-btn" onclick="confirDel()">Next</button>  
+                    <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+                </form>
+            </div>
+            <div id="confirmRegistration1" class="popup-content" style="display: none;">
+                <h1>Confirm Teller's Registration Details</h1>
+                <p class="con-txt">Username: <span class="notes" id="confirm1-username"></span></p>
+                <p class="con-txt">Branch: <span class="notes" id="confirm1-branch"></span></p>
+                <p class="con-txt">Teller Type: <span class="notes" id="confirm1-teller-type"></span></p>
+                <button type="button" class="ov-btn" onclick="submit1()">Confirm</button>
+                <button type="button" class="ov-btn" onclick="Back1()">Back</button>
+                <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+            </div>
+            <div id="confirmRegistration2" class="popup-content" style="display: none;">
+                <h1>Confirm Registration Details</h1>
+                <p class="con-txt">Username: <span class="notes" id="confirm2-username"></span></p>
+                <p class="con-txt">User Type: <span class="notes" id="confirm2-userty"></span></p>
+                <button type="button" class="ov-btn" onclick="submit2()">Confirm</button>
+                <button type="button" class="ov-btn" onclick="Back2()">Back</button>
+                <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+            </div>
+            <div id="confirmDelt" class="popup-content" style="display: none;">
+                <h1>Confirm The Name To Delete</h1>
+                <p class="con-txt">Username: <span class="notes" id="confirm3-username"></span></p>
+                <button type="button" class="ov-btn" onclick="submit3()">Confirm</button>
+                <button type="button" class="ov-btn" onclick="Back3()">Back</button>
+                <button type="button" class="close-popupo" onclick="closeadduserBtn()">Close</button>
+            </div>
+            <span id="loader" class="loading"></span>
+            <div id="failureM-sms" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-error.gif" >
+                    <div>Username Already Exist !</div>
+                </div>
+            </div>
+            <div id="successful-sms" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-check.gif">
+                    <div>User is Added successfully</div>
+                </div>
+            </div>
+            <div id="failure-sms" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-wrong.gif" >
+                    <div>Error occurred while processing request, Please Try Again !</div>
+                </div>
+            </div>    
+            <div id="successD-sms-delS" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-trash.gif">
+                    <div>User is Deleted successfully</div>
+                </div>
+            </div>
+            <div id="failure-sms-delE" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-error.gif" >
+                    <div>User Does Not Exist !</div>
+                </div>
+            </div>
+            <div id="failureTx-sms" class="pixal">
+                <div>
+                    <img src="imgs and icons/icons8-error.gif" >
+                    <div>Teller Already Exist !</div>
+                </div>
+            </div>
+                <div id="failureU-sms" class="pixal">
+                    <div>
+                        <img src="imgs and icons/icons8-error.gif" >
+                        <div>User Type Exist !</div>
+                    </div>
+                </div>
+            </div>
+        <script src="\src\admin.js"></script>
+    </body>
+</html>

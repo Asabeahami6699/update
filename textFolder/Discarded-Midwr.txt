@@ -1,0 +1,269 @@
+// Display the Calbank Current Balance
+const TotalCurrentCalbankBlc = async (req, res, next) => {
+    try {
+        
+        const openingBalance = parseFloat(req.TCopeningBalance ) || 0; 
+        const totalDeposits = parseFloat(req.totalCInputAmount) || 0; 
+        const transferredAmount = parseFloat(req.CtransferredAmount) || 0; 
+
+        const CcurrentBalance = openingBalance + totalDeposits - transferredAmount;
+
+        req.CcurrentBalance = CcurrentBalance;
+
+        next();
+    } catch (err) {
+        console.error("Error calculating current balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Ecobank Deposits Balance
+const TotalCalbankDeposit = async (req, res, next) => {
+    try {
+        const username = req.user.name;
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const inputAmounts = await UserDInputsCollection.aggregate([
+            {
+                $match: {
+                    Name: username,
+                    InputType: "Calbank",
+                    TheType: "Deposites",
+                    Timestamp: {
+                        $gte: currentDate,
+                        $lt: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$InputAmount" }
+                }
+            }
+        ]);
+
+        const totalCInputAmount = inputAmounts.length > 0 ? inputAmounts[0].totalAmount : 0;
+        req.totalCInputAmount = totalCInputAmount;
+        next();
+    } catch (err) {
+        console.error("Error fetching total InputAmount:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Calbank opening Balance
+const fetchTCopeningBalance = async (req, res, next) => {
+    try {
+        const username = req.user.name;
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const TCopeningBalances = await UserInputsCollection.find({
+            InputType: "Calbank",
+            Name: username,
+            Timestamp: {
+                $gte: currentDate, 
+                $lt: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000) 
+            }
+        });
+
+        let TCopeningBalance = '0';
+        if (TCopeningBalances.length > 0) {
+            TCopeningBalances.sort((a, b) => b.Timestamp - a.Timestamp);
+            TCopeningBalance = TCopeningBalances[0].InputAmount;
+        }
+
+        req.TCopeningBalance = TCopeningBalance;
+        next();
+    } catch (err) {
+        console.error("Error fetching TM opening balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Ecobank Current Balance
+const TotalCurrentEcobankBlc = async (req, res, next) => {
+    try {
+        
+        const openingBalance = parseFloat(req.TEopeningBalance ) || 0; 
+        const totalDeposits = parseFloat(req.totalEInputAmount) || 0; 
+        const transferredAmount = parseFloat(req.EtransferredAmount) || 0; 
+
+        const EcurrentBalance = openingBalance + totalDeposits - transferredAmount;
+
+        req.EcurrentBalance = EcurrentBalance;
+
+        next();
+    } catch (err) {
+        console.error("Error calculating current balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+// Display the Ecobank Deposits Balance
+const TotalEcobankDeposit = async (req, res, next) => {
+    try {
+        const username = req.user.name;
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const inputAmounts = await UserDInputsCollection.aggregate([
+            {
+                $match: {
+                    Name: username,
+                    InputType: "ecobank",
+                    TheType: "Deposites",
+                    Timestamp: {
+                        $gte: currentDate,
+                        $lt: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$InputAmount" }
+                }
+            }
+        ]);
+
+        const totalEInputAmount = inputAmounts.length > 0 ? inputAmounts[0].totalAmount : 0;
+        req.totalEInputAmount = totalEInputAmount;
+        next();
+    } catch (err) {
+        console.error("Error fetching total InputAmount:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Ecobank opening Balance
+const fetchTEopeningBalance = async (req, res, next) => {
+    try {
+        const username = req.user.name;
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const TEopeningBalances = await UserInputsCollection.find({
+            InputType: "ecobank",
+            Name: username,
+            Timestamp: {
+                $gte: currentDate, 
+                $lt: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000) 
+            }
+        });
+
+        let TEopeningBalance = '0';
+        if (TEopeningBalances.length > 0) {
+            TEopeningBalances.sort((a, b) => b.Timestamp - a.Timestamp);
+            TEopeningBalance = TEopeningBalances[0].InputAmount;
+        }
+
+        req.TEopeningBalance = TEopeningBalance;
+        next();
+    } catch (err) {
+        console.error("Error fetching TM opening balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Fidelity Current Balance
+const TotalCurrentFidelityBlc = async (req, res, next) => {
+    try {
+        
+        const openingBalance = parseFloat(req.TFopeningBalance ) || 0; 
+        const totalDeposits = parseFloat(req.totalFInputAmount) || 0; 
+        const transferredAmount = parseFloat(req.FtransferredAmount) || 0; 
+
+        const FcurrentBalance = openingBalance + totalDeposits - transferredAmount;
+
+        req.FcurrentBalance = FcurrentBalance;
+
+        next();
+    } catch (err) {
+        console.error("Error calculating current balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the Fidelity Deposits Balance
+const TotalFidelityDeposit = async (req, res, next) => {
+    try {
+        const username = req.user.name;
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const inputAmounts = await UserDInputsCollection.aggregate([
+            {
+                $match: {
+                    Name: username,
+                    InputType: "fidelity",
+                    TheType: "Deposites",
+                    Timestamp: {
+                        $gte: currentDate,
+                        $lt: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$InputAmount" }
+                }
+            }
+        ]);
+
+        const totalFInputAmount = inputAmounts.length > 0 ? inputAmounts[0].totalAmount : 0;
+        req.totalFInputAmount = totalFInputAmount;
+        next();
+    } catch (err) {
+        console.error("Error fetching total InputAmount:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// Display the MoMo Current Balance
+const TotalCurrentMoMoBlc = async (req, res, next) => {
+    try {
+        
+        const openingBalance = parseFloat(req.TMopeningBalance) || 0; // Default to 0 if opening balance is not available
+        const totalDeposits = parseFloat(req.totalInputAmount) || 0; 
+        const transferredAmount = parseFloat(req.transferredAmount) || 0; 
+
+        const currentBalance = openingBalance + totalDeposits - transferredAmount;
+
+        req.currentBalance = currentBalance;
+
+        next();
+    } catch (err) {
+        console.error("Error calculating current balance:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+// Display the Total Current Physical Cash
+const TotalcPcash = async (req, res, next) => {
+    try {
+        
+        const InitPcash = parseFloat(req.InitialPCash) || 0; 
+        const PcashColtd = parseFloat(req.totalColtdPcash) || 0; 
+        const TotalTAmt = parseFloat(req.TotalAmoutTrans) || 0; 
+
+        const TTotalcPcash = InitPcash + PcashColtd + TotalTAmt ;
+
+        req.TTotalcPcash = TTotalcPcash;
+
+        next();
+    } catch (err) {
+        console.error("Error calculating Total Costumers:", err);
+        res.status(500).send('Internal Server Error');
+    }
+};

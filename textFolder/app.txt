@@ -1,0 +1,313 @@
+
+middleware.use(methodOverride('_method'));
+
+
+            <% if (messages.error) { %>
+                <%= messages.error %>
+            <% } %>
+
+
+router.post('/userslogin', passport.authenticate('otheruser', {
+    failureRedirect: '/login', 
+    failureFlash: true 
+  }), (req, res) => {
+    if ( req.user.usertype === 'Superuser') {
+      res.redirect('/superuser');
+    } else if ( req.user.usertype === 'Teller') {
+      res.redirect('/user');
+    } else {
+      res.redirect('/login'); 
+    }
+});
+
+
+            <p class="flashmgs"> 
+                <% if (UserMessages.Success) { %>
+                <%= UserMessages.Success %>
+                <% } else if (UserMessages.Failure) { %>
+                <%= UserMessages.Failure %>
+                <% } %>
+            </p>
+
+UserMessages: req.flash() 
+res.redirect('/user');
+ req.flash('Failure', 'Bank Record not Saved Due To Internal Error , Please Try Again');
+      res.redirect('/user');   
+
+                 Ecobank  SEC.
+                <div class="card-disp">
+                    <h1> Initial Physical Cash</h1>
+                    <h2>GHC <%= TEopeningBalance %></h2>
+                </div>
+
+                <div class="card-disp">
+                    <h1>Current Phisical Balance</h1>
+                    <h2>GHC <%= EcurrentBalance %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Phisical Cash Collected</h1>
+                    <h2>GHC <%= totalEInputAmount %></h2>
+                </div>
+
+                MOMO SEC.
+                <div class="card-disp">
+                    <h1>Initial Physical Cash</h1>
+                    <h2>GHC <%= TMopeningBalance %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Physical Cash Collected</h1>
+                    <h2>GHC <%= totalInputAmount %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Total Current Balance</h1>
+                    <h2>GHC <%= currentBalance %></h2>
+                </div>
+
+                FIDEL. SEC.
+                <div class="card-disp">
+                    <h1>Initial Physical Cash</h1>
+                    <h2>GHC <%= TFopeningBalance %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Today's Costumers</h1>
+                    <h2><%= countF %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Total Current Balance</h1>
+                    <h2>GHC <%= FcurrentBalance %></h2>
+                </div>
+
+                  CALBANK. SEC.
+                <div class="card-disp">
+                    <h1>Initial Physical Cash</h1>
+                    <h2>GHC <%= TCopeningBalance %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Physical Cash Collected</h1>
+                    <h2>GHC <%= totalCInputAmount %></h2>
+                </div>
+                <div class="card-disp">
+                    <h1>Total Current Balance</h1>
+                    <h2>GHC <%= CcurrentBalance %></h2>
+                </div>
+
+              id="down-display"
+
+      Teller_Type: type ,
+      The_Branch: location 
+
+        const type =req.user.tellertype;
+       const location = req.user.branch;
+
+
+           Teller_Type: {
+        type: String,
+        ref: 'LogInCollection',
+        required: true
+    },
+    The_Branch: {
+        type: String,
+        ref: 'LogInCollection',
+        required: true
+    },
+
+<form action="" method="get">
+                  <h1>Superuser Data Menu</h1>
+              <label for="database">Choose Branch:</label>
+              <select id="branch" name="branch" required>
+                  <option value="" disabled selected hidden>......</option>
+                  <option value="Overall-Dashboard">Overall Dashboard</option>
+                  <option value="Aiyinase-Dashboard">Aiyinase</option>
+                  <option value="Prestea-Dashboard">Prestea</option>
+                  <option value="Bogoso-Dashboard">Bogoso</option>
+              </select>
+              <label for="view-Teller">Teller Type:</label>
+              <select id="teller" name="teller" required>
+                  <option value="" disabled selected hidden>......</option>
+                  <option value="All-tellers">All-tellers</option>
+                  <option value="Teller-1">Teller-1</option>
+                  <option value="Teller-2">Teller-2</option>
+              </select>
+              <label for="transaction-type">Transaction Type:</label>
+              <select id="transaction-type" name="transaction-type" required>
+                  <option value="" disabled selected hidden>......</option>
+                  <option value="all-transac">All Transactions</option>
+                  <option value="momo">Mobile Money (MoMo)</option>
+                  <option value="ecobank">Ecobank</option>
+                  <option value="fidelity">Fidelity Bank</option>
+                  <option value="calbank">Calbank</option>
+              </select>
+             <label for="start-date">Start Date:</label>
+             <input type="date" id="start-date" name="start-date" required>
+             <label for="end-date">End Date:</label>
+             <input type="date" id="end-date" name="end-date" required>
+             <button type="submit" class="ov-btn"  onclick="ViewSuperuserData()">View Selected Data</button>
+             <button type="submit" class="ov-btn"  onclick="SuperuserDataDl()">Download Selected Data</button>
+             <button type="button" class="close-popupo" onclick="closeBtn()">Close</button>
+            </form>
+
+
+               <li> 
+                 <form action="/back1?_method=DELETE"  method="post">
+                    <button class="b1-btn" type="submit">Go Back</button>
+                 </form>  
+                     
+ 
+ 
+                </li> 
+
+
+AT1TotalCostumers,AT1TotalcPcash,AT2TotalCostumers,AT2TotalcPcash,BT1TotalCostumers,BT1TotalcPcash,BT2TotalCostumers,
+BT2TotalcPcash,PT1TotalCostumers,PT1TotalcPcash,PT2TotalCostumers,PT2TotalcPcash
+
+AT1TotalCostumers: req.AT1TotalCostumers,AT1TTotalcPcash: req.AT1TTotalcPcash,
+AT2TotalCostumers: req.AT2TotalCostumers,AT2TTotalcPcash: req.AT2TTotalcPcash,
+BT1TotalCostumers: req.BT1TotalCostumers,BT1TTotalcPcash: req.BT1TTotalcPcash,
+BT2TotalCostumers: req.BT2TotalCostumers,BT2TTotalcPcash: req.BT2TTotalcPcash,
+PT1TotalCostumers: req.PT1TotalCostumers,PT1TTotalcPcash: req.PT1TTotalcPcash,
+PT2TotalCostumers: req.PT2TotalCostumers,PT2TTotalcPcash: req.PT2TTotalcPcash
+
+            <div class="eco-container">
+                <p> OTHER-BANKS-SECTION </p>
+                <div class="eco-disp">
+                    <h1>Opening Balance 1</h1>
+                    <h2>GHC <%= SEopeningBalance %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Opening Balance 2</h1>
+                    <h2>GHC <%= SEopeningBalance %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Opening Balance 3</h1>
+                    <h2>GHC <%= SEopeningBalance %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Opening Balance 4</h1>
+                    <h2>GHC <%= SEopeningBalance %></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Today's Costumers 1</h1>
+                    <h2><%= ScountE %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Today's Costumers 2</h1>
+                    <h2><%= ScountE %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Today's Costumers 3</h1>
+                    <h2><%= ScountE %></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Today's Costumers 4</h1>
+                    <h2><%= ScountE %></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>E-Cash Collected 1</h1>
+                    <h2>GHC <%= totalSEInputAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>E-Cash Collected 2</h1>
+                    <h2>GHC <%= totalSEInputAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>E-Cash Collected 3</h1>
+                    <h2>GHC <%= totalSEInputAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>E-Cash Collected 4</h1>
+                    <h2>GHC <%= totalSEInputAmount%></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Amount Transfered 1</h1>
+                    <h2>GHC <%= SEtransferredAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Amount Transfered 2</h1>
+                    <h2>GHC <%= SEtransferredAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Amount Transfered 3</h1>
+                    <h2>GHC <%= SEtransferredAmount%></h2>
+                </div>
+                    <div class="eco-disp">
+                    <h1>Amount Transfered 4</h1>
+                    <h2>GHC <%= SEtransferredAmount%></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Total Current Balance 1</h1>
+                    <h2>GHC <%= SEcurrentBalance %></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Total Current Balance 2</h1>
+                    <h2>GHC <%= SEcurrentBalance %></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Total Current Balance 3</h1>
+                    <h2>GHC <%= SEcurrentBalance %></h2>
+                </div>
+                <div class="eco-disp">
+                    <h1>Total Current Balance 4</h1>
+                    <h2>GHC <%= SEcurrentBalance %></h2>
+                </div>
+ 
+            </div>
+hshd
+jhdjh
+hjsdudjs
+hjgsdjh
+const branch = req.user.branch;
+TheBranch: branch,
+
+
+
+
+app.get('/admin2',checkAuthenticated, 
+//Other Deposits Middlewares1
+AT1TotalcPcash,AT2TotalcPcash,BT1TotalcPcash,BT2TotalcPcash,PT1TotalcPcash,PT2TotalcPcash,
+//Aiyinase Teller 1 Withdrawal Middlewares
+A1ActW,A2ActW,B1ActW,B2ActW,P1ActW,P2ActW,
+//Total Amount Middlewares
+A1BLC,A2BLC,B1BLC,B2BLC,P1BLC,P2BLC,
+,(req, res) => {
+  res.render('admin2.ejs',{
+    //Aiyinase Teller 1 Withdrawal EJS Display Request Variables
+    A1Mc:req.WMoMoA1Ct,A1Gm:req.docA1Gm,AtmA1:req.docAtmA1,A1VdC:req.docA1VdC,A1E:req.docA1E,A1Ez:req.docA1Ez,A1Susud:req.docA1Susud,
+    A1Rd:req.docA1Rd,A1VWm:req.AmountA1VW,A1Em:req.AmountA1E,A1MTN:req.AmountA1MTN,A1susu:req.AmountA1susu,A1Gmm:req.AmountA1Gm,
+    A1Atm:req.AmountA1Atm,A1Ezmm:req.AmountA1Ezmm,A1Remm:req.AmountA1Remm,A1Comm:req.AmountA1Comm,A1Load:req.LoadingA1,
+    A1Exp:req.AmountA1Exp,A1cashR:req.A1cashRm,A1TCost:req.TotalA1Cost,A1TM:req.A1WAmount,A1AW:req.A1AWAmount,
+    //Aiyinase Teller 2 Withdrawal EJS Display Request Variables
+    A2Mc:req.WMoMoA2Ct,A2Gm:req.docA2Gm,AtmA2:req.docAtmA2,A2VdC:req.docA2VdC,A2E:req.docA2E,A2Ez:req.docA2Ez,A2Susud:req.docA2Susud,
+    A2Rd:req.docA2Rd,A2VWm:req.AmountA2VW,A2Em:req.AmountA2E,A2MTN:req.AmountA2MTN,A2susu:req.AmountA2susu,A2Gmm:req.AmountA2Gm,
+    A2Atm:req.AmountA2Atm,A2Ezmm:req.AmountA2Ezmm,A2Remm:req.AmountA2Remm,A2Comm:req.AmountA2Comm,A2Load:req.LoadingA2,
+    A2Exp:req.AmountA2Exp,A2cashR:req.A2cashRm,A2TCost:req.TotalA2Cost,A2TM:req.A2WAmount,A2AW:req.A2AWAmount,
+    //Bogoso Teller 1 Withdrawal EJS Display Request Variables
+    B1Mc:req.WMoMoB1Ct,B1Gm:req.docB1Gm,AtmB1:req.docAtmB1,B1VdC:req.docB1VdC,B1E:req.docB1E,B1Ez:req.docB1Ez,B1Susud:req.docB1Susud,
+    B1Rd:req.docB1Rd,B1VWm:req.AmountB1VW,B1Em:req.AmountB1E,B1MTN:req.AmountB1MTN,B1susu:req.AmountB1susu,B1Gmm:req.AmountB1Gm,
+    B1Atm:req.AmountB1Atm,B1Ezmm:req.AmountB1Ezmm,B1Remm:req.AmountB1Remm,B1Comm:req.AmountB1Comm,B1Load:req.LoadingB1,
+    B1Exp:req.AmountB1Exp,B1cashR:req.B1cashRm,B1TCost:req.TotalB1Cost,B1TM:req.B1WAmount,B1AW:req.B1AWAmount,
+    //Bogoso Teller 2 Withdrawal EJS Display Request Variables
+    B2Mc:req.WMoMoB2Ct,B2Gm:req.docB2Gm,AtmB2:req.docAtmB2,B2VdC:req.docB2VdC,B2E:req.docB2E,B2Ez:req.docB2Ez,B2Susud:req.docB2Susud,
+    B2Rd:req.docB2Rd,B2VWm:req.AmountB2VW,B2Em:req.AmountB2E,B2MTN:req.AmountB2MTN,B2susu:req.AmountB2susu,B2Gmm:req.AmountB2Gm,
+    B2Atm:req.AmountB2Atm,B2Ezmm:req.AmountB2Ezmm,B2Remm:req.AmountB2Remm,B2Comm:req.AmountB2Comm,B2Load:req.LoadingB2,
+    B2Exp:req.AmountB2Exp,B2cashR:req.B2cashRm,B2TCost:req.TotalB2Cost,B2TM:req.B2WAmount,B2AW:req.B2AWAmount,
+    //Prestea Teller 1 Withdrawal EJS Display Request Variables
+    P1Mc:req.WMoMoP1Ct,P1Gm:req.docP1Gm,AtmP1:req.docAtmP1,P1VdC:req.docP1VdC,P1E:req.docP1E,P1Ez:req.docP1Ez,P1Susud:req.docP1Susud,
+    P1Rd:req.docP1Rd,P1VWm:req.AmountP1VW,P1Em:req.AmountP1E,P1MTN:req.AmountP1MTN,P1susu:req.AmountP1susu,P1Gmm:req.AmountP1Gm,
+    P1Atm:req.AmountP1Atm,P1Ezmm:req.AmountP1Ezmm,P1Remm:req.AmountP1Remm,P1Comm:req.AmountP1Comm,P1Load:req.LoadingP1,
+    P1Exp:req.AmountP1Exp,P1cashR:req.P1cashRm,P1TCost:req.TotalP1Cost,P1TM:req.P1WAmount,P1AW:req.P1AWAmount,
+    //Prestea Teller 2 Withdrawal EJS Display Request Variables
+    P2Mc:req.WMoMoP2Ct,P2Gm:req.docP2Gm,AtmP2:req.docAtmP2,P2VdC:req.docP2VdC,P2E:req.docP2E,P2Ez:req.docP2Ez,P2Susud:req.docP2Susud,
+    P2Rd:req.docP2Rd,P2VWm:req.AmountP2VW,P2Em:req.AmountP2E,P2MTN:req.AmountP2MTN,P2susu:req.AmountP2susu,P2Gmm:req.AmountP2Gm,
+    P2Atm:req.AmountP2Atm,P2Ezmm:req.AmountP2Ezmm,P2Remm:req.AmountP2Remm,P2Comm:req.AmountP2Comm,P2Load:req.LoadingP2,
+    P2Exp:req.AmountP2Exp,P2cashR:req.P2cashRm,P2TCost:req.TotalP2Cost,P2TM:req.P2WAmount,P2AW:req.P2AWAmount,
+   //Other Deposits EJS Display Request Variables
+   AT1TTotalcPcash: req.AT1TTotalcPcash,AT2TTotalcPcash: req.AT2TTotalcPcash,BT1TTotalcPcash: req.BT1TTotalcPcash,
+   BT2TTotalcPcash: req.BT2TTotalcPcash,PT1TTotalcPcash: req.PT1TTotalcPcash,PT2TTotalcPcash: req.PT2TTotalcPcash,
+   a1acos: req.a1acos,a1bl: req.a1bl,a2acos: req.a2acos,a2bl: req.a2bl,b1acos: req.b1acos,b1bl: req.b1bl,
+   b2acos: req.b2acos,b2bl: req.b2bl,p1acos: req.p1acos,p1bl: req.p1bl,p2acos: req.p2acos,p2bl: req.p2bl,
+   //All Tellers Total EJS Display Request Variables
+   ttmw: req.ttmw,ttvw: req.ttvw,ttsw: req.ttsw,ttew: req.ttew,ttgw: req.ttgw,ttaw: req.ttaw,ttezw: req.ttezw,
+   ttrw: req.ttrw,ttcb: req.ttcb,ttwc: req.ttwc,ttcr: req.ttcr,ttatw: req.ttatw,texp: req.texp,tcom: req.tcom,
+   ttact: req.ttact
+  });
+});
